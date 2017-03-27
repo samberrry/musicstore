@@ -15,7 +15,7 @@
         <table class="table table-striped table-hover">
             <thead>
             <tr class="bg-success">
-                <th>Photo thumnb</th>
+                <th>Photo thumb</th>
                 <th>Product Name</th>
                 <th>Category</th>
                 <th>Condition</th>
