@@ -15,6 +15,8 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -99,6 +101,25 @@ public class AdminProduct {
         }
 
         productService.editProduct(product);
+
+        return "redirect:/admin/productInventory";
+    }
+
+    @RequestMapping("/product/deleteProduct/{id}")
+    public String deleteProduct(@PathVariable("id")int id,Model model,HttpServletRequest request){
+        String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+        path = Paths.get(rootDirectory+ "/WEB-INF/resources/images/00"+id+".png");
+
+        if (Files.exists(path)){
+            try {
+                Files.delete(path);
+            }catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
+        Product product = productService.getProductById(id);
+        productService.deleteProduct(product);
 
         return "redirect:/admin/productInventory";
     }

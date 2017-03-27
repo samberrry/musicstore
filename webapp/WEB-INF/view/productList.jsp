@@ -30,7 +30,7 @@
                 <td>${product.productCategory}</td>
                 <td>${product.productCondition}</td>
                 <td>${product.productPrice}</td>
-                <td><a href="<spring:url value="/productList/viewProduct/${product.productId}"></spring:url> ">
+                <td><a href="<spring:url value="/product/viewProduct/${product.productId}"></spring:url> ">
                     <span class="glyphicon glyphicon-info-sign"></span> </a></td>
             </tr>
             </c:forEach>
