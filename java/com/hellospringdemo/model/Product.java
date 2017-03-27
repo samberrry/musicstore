@@ -38,16 +38,16 @@ public class Product implements Serializable{
     @JsonIgnore
     private List<CartItem> cartItemList;
 
-   // @Transient
-//    private MultipartFile productImage;
-//
-//    public MultipartFile getProductImage() {
-//        return productImage;
-//    }
-//
-//    public void setProductImage(MultipartFile productImage) {
-//        this.productImage = productImage;
-//    }
+    @Transient
+    private MultipartFile productImage;
+
+    public MultipartFile getProductImage() {
+        return productImage;
+    }
+
+    public void setProductImage(MultipartFile productImage) {
+        this.productImage = productImage;
+    }
 
     public String getProductName() {
         return productName;

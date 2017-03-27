@@ -11,7 +11,7 @@
             <p class="lead">Fill the below information to add a new product:</p>
         </div>
 
-        <form:form action="${pageContext.request.contextPath}/admin/productInventory/addProduct" method="post" commandName="product" enctype="multipart/form-data">
+        <form:form action="${pageContext.request.contextPath}/admin/product/addProduct" method="post" commandName="product" enctype="multipart/form-data">
 
         <div class="form-group">
             <label for="name">Name</label>
@@ -44,7 +44,7 @@
 
         <div class="form-group">
             <label for="status">Status</label>
-            <label class="checkbox-inline"><form:radiobutton path="productStatus" id="status" value="active"/>Actice</label>
+            <label class="checkbox-inline"><form:radiobutton path="productStatus" id="status" value="active"/>Active</label>
             <label class="checkbox-inline"><form:radiobutton path="productStatus" id="condition" value="inactive"/>Inactive</label>
         </div>
 
@@ -61,7 +61,7 @@
 
         <div class="form-group">
             <label class="control-label" for="productImage">Upload Picture</label>
-            <form:input id="productImage" path="" type="file" class="form:input-large"/>
+            <form:input id="productImage" path="productImage" type="file" class="form:input-large"/>
         </div>
 
         <br><br>
