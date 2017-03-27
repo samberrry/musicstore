@@ -11,8 +11,10 @@
             <p class="lead">Please update the product information:</p>
         </div>
 
-        <form:form action="${pageContext.request.contextPath}/admin/productInventory/editProduct" method="post" commandName="product" enctype="multipart/form-data">
+        <form:form action="${pageContext.request.contextPath}/admin/product/editProduct" method="post" commandName="product" enctype="multipart/form-data">
 
+
+        <%--THIS is IMPORTNATN--%>
         <form:hidden path="productId"/>
 
         <div class="form-group">
@@ -44,7 +46,7 @@
 
         <div class="form-group">
             <label for="status">Status</label>
-            <label class="checkbox-inline"><form:radiobutton path="productStatus" id="status" value="active"/>Actice</label>
+            <label class="checkbox-inline"><form:radiobutton path="productStatus" id="status" value="active"/>Active</label>
             <label class="checkbox-inline"><form:radiobutton path="productStatus" id="condition" value="inactive"/>Inactive</label>
         </div>
 
