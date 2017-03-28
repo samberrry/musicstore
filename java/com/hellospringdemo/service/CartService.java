@@ -1,12 +1,14 @@
-package com.hellospringdemo.dao;
+package com.hellospringdemo.service;
 
 import com.hellospringdemo.model.Cart;
 
 /**
- * Created by Hessam on 3/18/17.
+ * Created by Hessam on 3/29/17.
  */
-public interface CartDao {
+public interface CartService {
+
     Cart getCartById(int cartId);
 
     void update(Cart cart);
+
 }
