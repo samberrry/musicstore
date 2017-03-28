@@ -28,7 +28,7 @@ public class Customer implements Serializable{
     @NotEmpty(message = "The customer username must not be empty!")
     private String username;
     @NotEmpty(message = "The customer password  must not be empty!")
-    private String passowrd;
+    private String password;
 
     private boolean enabled;
 
@@ -85,12 +85,12 @@ public class Customer implements Serializable{
         this.username = username;
     }
 
-    public String getPassowrd() {
-        return passowrd;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPassowrd(String passowrd) {
-        this.passowrd = passowrd;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public boolean isEnabled() {
