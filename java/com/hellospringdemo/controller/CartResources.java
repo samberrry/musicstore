@@ -56,6 +56,7 @@ public class CartResources {
                 cartItem.setQuantity(cartItem.getQuantity()+1);
                 cartItem.setTotalPrice(product.getProductPrice()*cartItem.getQuantity());
                 cartItemService.addCartItem(cartItem);
+                return;
             }
         }
         CartItem cartItem = new CartItem();
@@ -66,9 +67,27 @@ public class CartResources {
         cartItemService.addCartItem(cartItem);
     }
 
-//    @RequestMapping("/remove/{productId}")
-//    public String removeItem(){
-//
-//    }
+    @RequestMapping(value = "/remove/{productId}",method = RequestMethod.PUT)
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void removeItem(@PathVariable int productId) {
+
+        CartItem cartItem = cartItemService.getCartItemByProductId(productId);
+        cartItemService.removeCartItem(cartItem);
+    }
+
+    @RequestMapping(value = "/{cartId}",method = RequestMethod.DELETE)
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void clearCart(@PathVariable int cartId){
+        Cart cart = cartService.getCartById(cartId);
+        cartItemService.removeAllCartItems(cart);
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST,reason = "Illegal request, please verify your payload")
+    public void handleClientErrors(Exception e){}
+
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR,reason = "Internal Server Error")
+    public void handleServerErrors(Exception e){}
 
 }

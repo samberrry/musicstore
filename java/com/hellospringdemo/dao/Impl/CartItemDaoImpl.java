@@ -3,6 +3,7 @@ package com.hellospringdemo.dao.Impl;
 import com.hellospringdemo.dao.CartItemDao;
 import com.hellospringdemo.model.Cart;
 import com.hellospringdemo.model.CartItem;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,16 @@ public class CartItemDaoImpl implements CartItemDao {
         {
             removeCartItem(cartItem);
         }
+    }
+
+    public CartItem getCartItemByProductId(int productId){
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from CartItem where productId = ?");
+        query.setInteger(0,productId);
+
+        session.flush();
+
+        return (CartItem)query.uniqueResult();
     }
 
 }
