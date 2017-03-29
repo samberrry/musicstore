@@ -66,4 +66,9 @@ public class CartResources {
         cartItemService.addCartItem(cartItem);
     }
 
+//    @RequestMapping("/remove/{productId}")
+//    public String removeItem(){
+//
+//    }
+
 }
