@@ -4,6 +4,7 @@ import com.hellospringdemo.model.Cart;
 import com.hellospringdemo.model.CartItem;
 import com.hellospringdemo.model.Customer;
 import com.hellospringdemo.model.Product;
+import com.hellospringdemo.service.CartItemService;
 import com.hellospringdemo.service.CartService;
 import com.hellospringdemo.service.CustomerService;
 import com.hellospringdemo.service.ProductService;
@@ -29,6 +30,8 @@ public class CartResources {
     CustomerService customerService;
     @Autowired
     ProductService productService;
+    @Autowired
+    CartItemService cartItemService;
 
     @RequestMapping("/{cartId}")
     //ResponseBody => convert to JSON with Jackson dependency
@@ -52,9 +55,15 @@ public class CartResources {
             {
                 cartItem.setQuantity(cartItem.getQuantity()+1);
                 cartItem.setTotalPrice(product.getProductPrice()*cartItem.getQuantity());
+                cartItemService.addCartItem(cartItem);
             }
         }
-
+        CartItem cartItem = new CartItem();
+        cartItem.setProduct(product);
+        cartItem.setQuantity(1);
+        cartItem.setTotalPrice(product.getProductPrice());
+        cartItem.setCart(cart);
+        cartItemService.addCartItem(cartItem);
     }
 
 }
