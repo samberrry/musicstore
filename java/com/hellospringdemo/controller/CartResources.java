@@ -10,11 +10,11 @@ import com.hellospringdemo.service.CustomerService;
 import com.hellospringdemo.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
+//import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 /**
@@ -40,10 +40,12 @@ public class CartResources {
         return cartService.getCartById(cartId);
     }
 
+//    public void addItem(@PathVariable(value = "productId")int productId, @AuthenticationPrincipal User userActive){
     @RequestMapping(value = "/add/{productId}",method = RequestMethod.PUT)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void addItem(@PathVariable(value = "productId")int productId, @AuthenticationPrincipal User userActive){
-        Customer customer = customerService.getCustomerByUsername(userActive.getUsername());
+    public void addItem(@PathVariable(value = "productId")int productId, Principal principal){
+
+        Customer customer = customerService.getCustomerByUsername(principal.getName());
         Cart cart = customer.getCart();
         Product product = productService.getProductById(productId);
 
